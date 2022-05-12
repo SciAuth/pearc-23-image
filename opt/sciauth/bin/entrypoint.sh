@@ -3,8 +3,15 @@
 
 set -eu
 
-if [ -n "${SCIAUTH_TUTORIAL_REPOSITORY:-}" ]; then
-  (cd ~ && git clone "${SCIAUTH_TUTORIAL_REPOSITORY}")
+repository="${SCIAUTH_TUTORIAL_REPOSITORY:-}"
+
+if [ -n "$repository" ]; then
+  destination="$(basename -s .git -- "$repository")"
+  (
+    cd ~ \
+    && rm -rf "$destination" \
+    && git clone "$repository" "$destination" \
+  )
 fi
 
 exec "$@"
