@@ -3,8 +3,8 @@
 
 set -eu
 
-if [ -n "${TUTORIAL_REPOSITORY:-}" ]; then
-  (cd ~ && git clone "${TUTORIAL_REPOSITORY}")
+if [ -n "${SCIAUTH_TUTORIAL_REPOSITORY:-}" ]; then
+  (cd ~ && git clone "${SCIAUTH_TUTORIAL_REPOSITORY}")
 fi
 
 exec "$@"
