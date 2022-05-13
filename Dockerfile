@@ -4,16 +4,16 @@ FROM hub.opensciencegrid.org/osg-jupyter/htc-minimal-notebook:latest
 
 USER root
 
-RUN apt-get update \
-    && apt-get install -y sssd \
-    && apt-get clean \
+RUN apt-get update -y \
+    && apt-get upgrade -y \
+    && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
 COPY opt /opt/
 
 USER $NB_UID:$NB_GID
 
-## Install packages needed for the tutorial.
+## Install packages and Jupyter kernels needed by the tutorial.
 
 RUN python3 -m pip install -U --no-cache-dir \
       pip \
