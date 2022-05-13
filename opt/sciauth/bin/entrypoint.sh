@@ -1,9 +1,9 @@
 #!/bin/sh
-# Prepare the host before starting the notebook server.
+# Install materials for the tutorial.
 
 set -eu
 
-repository="${SCIAUTH_TUTORIAL_REPOSITORY:-}"
+repository="${SCITOKENS_TUTORIAL_REPOSITORY:-}"
 
 if [ -n "$repository" ]; then
   destination="$(basename -s .git -- "$repository")"

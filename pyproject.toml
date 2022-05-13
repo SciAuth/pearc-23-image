@@ -42,7 +42,7 @@ sqlite_cache = true
 [tool.poetry]
 name = "htcondor_week_2022"
 version = "0.0.1"
-description = "Supporting materials for the SciAuth tutorial at HTCondor Week 2022"
+description = "Supporting materials for the SciTokens tutorial at HTCondor Week 2022"
 license = "Apache-2.0"
 authors = ["Brian Aydemir <baydemir@morgridge.org>"]
 repository = "https://github.com/brianaydemir/pythonlib"
