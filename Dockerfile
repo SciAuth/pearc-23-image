@@ -10,6 +10,7 @@ RUN apt-get update -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
+COPY etc /etc/
 COPY opt /opt/
 
 USER $NB_UID:$NB_GID
