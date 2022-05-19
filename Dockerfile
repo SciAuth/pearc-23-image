@@ -7,6 +7,13 @@ USER root
 RUN apt-get update -y \
     && apt-get upgrade -y \
     && apt-get install -y curl \
+    && curl https://repo.data.kit.edu/repo-data-kit-edu-key.gpg \
+         | gpg --dearmor \
+         > /etc/apt/trusted.gpg.d/kit-repo.gpg \
+    && echo "deb https://repo.data.kit.edu/ubuntu/focal ./" \
+         >> /etc/apt/sources.list \
+    && apt-get update -y \
+    && apt-get install -y oidc-agent \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
