@@ -7,12 +7,12 @@ requires = ["poetry-core>=1.0.0"]
 
 
 [tool.black]
-line-length = 96
-target-version = ["py38", "py39", "py310"]
+line-length = 80
+target-version = ["py38", "py39", "py310", "py311"]
 
 
 [tool.isort]
-line_length = 96
+line_length = 80
 profile = "black"
 
 
@@ -35,17 +35,16 @@ pretty = true
 show_error_codes = true
 
 incremental = true
-cache_dir = ".mypy"
 sqlite_cache = true
 
 
 [tool.poetry]
-name = "htcondor_week_2022"
+name = "sciauth_pearc_23_image"
 version = "0.0.1"
-description = "Supporting materials for the SciTokens tutorial at HTCondor Week 2022"
+description = "Supporting materials for the SciAuth tutorial at PEARC 2023"
 license = "Apache-2.0"
 authors = ["Brian Aydemir <baydemir@morgridge.org>"]
-repository = "https://github.com/brianaydemir/pythonlib"
+repository = "https://github.com/SciAuth/pearc-23-image"
 packages = []
 
 
@@ -53,18 +52,18 @@ packages = []
 python = "^3.8"
 
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 bandit = "~1.7"
-black = "~22.3"
-docutils = "~0.18"
-isort = "~5.10"
-mypy = "~0.950"
-pre-commit = "~2.19"
-pylint = "~2.13"
-"ruamel.yaml.cmd" = "~0.5"
-safety = "~1.10"
+black = "~23.3"
+docutils = "~0.20"
+isort = "~5.12"
+mypy = "~1.2"
+pre-commit = "~3.3"
+pylint = "~2.17"
+"ruamel.yaml.cmd" = "~0.6"
+safety = "~2.3"
 
 
 [tool.pylint.messages-control]
-max-line-length = 96
+max-line-length = 80
 disable = "invalid-name,missing-class-docstring,missing-function-docstring"
