@@ -1,5 +1,0 @@
-## Allow jovyan to manage httpd (Apache).
-
-Defaults: jovyan always_set_home,!env_reset,!secure_path,runas_default=root
-
-jovyan ALL = (root) NOPASSWD: /usr/sbin/apachectl
