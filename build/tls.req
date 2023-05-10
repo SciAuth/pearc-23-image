@@ -1,0 +1,9 @@
+[req]
+distinguished_name=req
+
+[san]
+subjectAltName=@san_names
+
+[san_names]
+DNS.1 = localhost
+DNS.2 = localhost.localdomain

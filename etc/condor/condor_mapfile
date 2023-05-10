@@ -1,0 +1,3 @@
+# Accept SciTokens issued by this host.
+
+SCITOKENS ^https://localhost:8443/token-issuer,(.*)$ \1
