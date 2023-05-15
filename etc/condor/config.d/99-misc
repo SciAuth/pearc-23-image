@@ -1,0 +1,2 @@
+# Increase logging.
+ALL_DEBUG = D_ALWAYS:2 D_SECURITY:2 D_CAT

@@ -1,6 +1,8 @@
 FROM hub.opensciencegrid.org/osg-jupyterhub/htc-minimal-notebook:1.5.0
 
-## Update the base install.
+
+## Update the base install, and install packages.
+
 
 USER root
 
@@ -23,32 +25,47 @@ RUN apt-get update -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
 
-COPY build /build/
-COPY etc /etc/
-COPY image-init.d /image-init.d/
-
-RUN mkdir -p /certs/ \
-    && /build/make_cert.sh \
-    && /build/add_cert.py /certs/tls.crt /etc/ssl/certs/ca-certificates.crt \
-    && chmod a+r /certs/tls.key \
-    #
-    && mkdir -p /apache2-jovyan/{run,lock,log}/ /token-issuer/ \
-    && chown -R $NB_UID:$NB_GID /apache2-jovyan/ /token-issuer/ \
-    #
-    && /build/configure_apache2.sh \
-    && a2enmod ssl \
-    && a2ensite 001-token-issuer \
-    && a2dissite 000-default
-
 USER $NB_UID:$NB_GID
 
-## Install packages and Jupyter kernels needed by the tutorial.
-
-# RUN python3 -m pip install -U --no-cache-dir \
-#       pip \
-#       setuptools \
-#       wheel \
 RUN python3 -m pip install -U --no-cache-dir \
       bash_kernel \
       scitokens \
     && python3 -m bash_kernel.install --sys-prefix
+
+
+## Configure services and container startup.
+
+
+USER root
+
+COPY build /build/
+COPY etc /etc/
+COPY image-init.d /image-init.d/
+COPY token-issuer /token-issuer/
+
+RUN mkdir -p /certs/ \
+    && openssl req -x509 \
+         -subj "/CN=localhost" \
+         -newkey rsa:4096 \
+         -out /certs/tls.crt \
+         -keyout /certs/tls.key \
+         -days 365 \
+         -nodes \
+         -sha256 \
+         -extensions san \
+         -config /build/tls.req \
+    && /build/add_cert.py /certs/tls.crt /etc/ssl/certs/ca-certificates.crt \
+    && chmod a+r /certs/tls.crt /certs/tls.key \
+    #
+    && /build/configure_apache2.sh \
+    && a2enmod ssl \
+    && a2ensite 001-token-issuer \
+    && a2dissite 000-default \
+    #
+    && chown -R $NB_UID:$NB_GID /token-issuer/
+
+
+## Ensure that the container runs as 'jovyan' by default.
+
+
+USER $NB_UID:$NB_GID

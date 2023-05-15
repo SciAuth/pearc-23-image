@@ -1,0 +1,6 @@
+# Require authentication and integrity checking by default.
+use SECURITY: With_Authentication
+
+# Only 'jovyan' is allowed to use condor_q and condor_submit.
+ALLOW_READ = jovyan@*/*
+ALLOW_WRITE = jovyan@*/*

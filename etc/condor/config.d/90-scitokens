@@ -3,8 +3,7 @@
 #
 
 # Restrict authentication to SciTokens.
-SEC_CLIENT_AUTHENTICATION_METHODS = SSL, SCITOKENS
-SEC_DEFAULT_AUTHENTICATION_METHODS = SSL, SCITOKENS
+SEC_CLIENT_AUTHENTICATION_METHODS = SCITOKENS
 
 # Require SciTokens to have a specific 'aud' claim.
 SCITOKENS_SERVER_AUDIENCE = htcondor.localdomain
@@ -13,10 +12,5 @@ SCITOKENS_SERVER_AUDIENCE = htcondor.localdomain
 CERTIFICATE_MAPFILE = /etc/condor/condor_mapfile
 
 # SciTokens authentication requires communicating over SSL.
-AUTH_SSL_CLIENT_CERTFILE = /certs/tls.crt
-AUTH_SSL_CLIENT_KEYFILE = /certs/tls.key
 AUTH_SSL_SERVER_CERTFILE = /certs/tls.crt
 AUTH_SSL_SERVER_KEYFILE = /certs/tls.key
-
-# Increase logging.
-ALL_DEBUG = D_ALWAYS:2 D_SECURITY:2 D_CAT

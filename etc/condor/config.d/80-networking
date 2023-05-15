@@ -1,0 +1,4 @@
+# Do not use the container's name as our hostname.
+
+CONDOR_HOST = localhost
+NETWORK_HOSTNAME = localhost
