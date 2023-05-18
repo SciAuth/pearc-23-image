@@ -1,3 +1,5 @@
-# Accept SciTokens issued by this host.
-
+# Accept tokens issued by this host.
 SCITOKENS "^https://localhost:8443/token-issuer,(.*)" \1
+
+# Accept tokens issued by the lightweight issuer.
+SCITOKENS "^https://lw-issuer.osgdev.chtc.io/scitokens-server,(.*)" jovyan
