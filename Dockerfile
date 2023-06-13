@@ -41,7 +41,7 @@ USER root
 COPY build /build/
 COPY etc /etc/
 COPY image-init.d /image-init.d/
-COPY token-issuer /token-issuer/
+COPY www /www/
 
 RUN mkdir -p /certs/ \
     && openssl req -x509 \

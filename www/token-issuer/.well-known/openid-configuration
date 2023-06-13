@@ -1,0 +1,4 @@
+{
+  "issuer": "https://localhost:8443/token-issuer",
+  "jwks_uri": "https://localhost:8443/token-issuer/keys"
+}
