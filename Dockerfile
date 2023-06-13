@@ -62,7 +62,7 @@ RUN mkdir -p /certs/ \
     && a2ensite 001-token-issuer \
     && a2dissite 000-default \
     #
-    && chown -R $NB_UID:$NB_GID /token-issuer/
+    && chown -R $NB_UID:$NB_GID /www/
 
 
 ## Ensure that the container runs as 'jovyan' by default.
