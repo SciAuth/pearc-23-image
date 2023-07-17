@@ -64,8 +64,10 @@ RUN mkdir -p /certs/ \
     #
     && chown -R $NB_UID:$NB_GID /www/ \
     #
-    && git clone https://github.com/SciAuth/pearc-23-notebook.git /demo-init.d/SciAuth-Tutorial \
-    && git clone https://github.com/SciAuth/scitoken-demo.git /demo-init.d/SciTokens-Demo
+    && git clone https://github.com/SciAuth/pearc-23-notebook.git /demo-init.d/Part-1-Command-Line \
+    && git clone https://github.com/SciAuth/scitoken-demo.git /demo-init.d/Part-2-Python \
+    #
+    && ln -s /build/init_demo.sh /init_demo.sh
 
 
 ## Ensure that the container runs as 'jovyan' by default.
