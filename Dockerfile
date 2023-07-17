@@ -1,4 +1,4 @@
-FROM hub.opensciencegrid.org/osg-jupyterhub/htc-minimal-notebook:1.5.0
+FROM hub.opensciencegrid.org/osg-jupyterhub/htc-minimal-notebook:2.0.0
 
 
 ## Update the base install, and install packages.
@@ -11,13 +11,13 @@ RUN apt-get update -y \
     #
     # START: Needed only for Ubuntu 20 and earlier.
     #
-    && apt-get install -y curl \
-    && curl https://repo.data.kit.edu/repo-data-kit-edu-key.gpg \
-         | gpg --dearmor \
-         > /etc/apt/trusted.gpg.d/kit-repo.gpg \
-    && echo "deb https://repo.data.kit.edu/ubuntu/focal ./" \
-         >> /etc/apt/sources.list \
-    && apt-get update -y \
+    # && apt-get install -y curl \
+    # && curl https://repo.data.kit.edu/repo-data-kit-edu-key.gpg \
+    #      | gpg --dearmor \
+    #      > /etc/apt/trusted.gpg.d/kit-repo.gpg \
+    # && echo "deb https://repo.data.kit.edu/ubuntu/focal ./" \
+    #      >> /etc/apt/sources.list \
+    # && apt-get update -y \
     #
     # END: Needed only for Ubuntu 20 and earlier.
     #
@@ -62,7 +62,10 @@ RUN mkdir -p /certs/ \
     && a2ensite 001-token-issuer \
     && a2dissite 000-default \
     #
-    && chown -R $NB_UID:$NB_GID /www/
+    && chown -R $NB_UID:$NB_GID /www/ \
+    #
+    && git clone https://github.com/SciAuth/pearc-23-notebook.git /demo-init.d/SciAuth-Tutorial \
+    && git clone https://github.com/SciAuth/scitoken-demo.git /demo-init.d/SciTokens-Demo
 
 
 ## Ensure that the container runs as 'jovyan' by default.
