@@ -66,6 +66,7 @@ RUN mkdir -p /certs/ \
     #
     && git clone https://github.com/SciAuth/pearc-23-notebook.git /demo-init.d/Part-1-Command-Line \
     && git clone https://github.com/SciAuth/scitoken-demo.git /demo-init.d/Part-2-Python \
+    && git clone https://github.com/brianaydemir/pearc23-end-to-end-env.git /demo-init.d/Part-3-End-to-End-Env \
     #
     && ln -s /build/init_demo.sh /init_demo.sh
 
